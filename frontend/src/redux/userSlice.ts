@@ -31,10 +31,11 @@ export const userSlice = createSlice({
   reducers: {
     updateAccessToken(state, { payload }) {
       state.access_token= payload;
+      state.isLoggedIn = true;
      
     },
     updateUserDetails(state, { payload }) {
-      state.isLoggedIn = true;
+      
       state.details = payload;
     },
     toggleFetched(state, { payload: v }) {

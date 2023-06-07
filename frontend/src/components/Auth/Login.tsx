@@ -17,18 +17,6 @@ function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (token) {
-      const fetchProfile = async () => {
-        const response = await getProfile(token);
-        const userDetails = response.data.data;
-        dispatch(updateUserDetails(userDetails));
-      };
-      fetchProfile();
-      navigate("/");
-    }
-  }, [token, dispatch, navigate]);
-
   const handleChange = (event: any) => {
     const { name, value } = event.target;
     setFormValues((prevValues) => ({

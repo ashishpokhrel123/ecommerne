@@ -4,7 +4,7 @@ import { FiChevronDown, FiSearch } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { FaShoppingCart, FaUser } from "react-icons/fa";
 
-function NavBar(userDetails: any) {
+function NavBar({ isLogged }: any) {
   const totalItemsInCart = 0;
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -59,7 +59,7 @@ function NavBar(userDetails: any) {
         />
       </span>
 
-      {userDetails ? (
+      {isLogged ? (
         <span className="px-4 flex items-center">
           <span className="px-4 relative">
             <FaShoppingCart className="icon" />

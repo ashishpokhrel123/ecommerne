@@ -3,19 +3,24 @@ import TopBar from "../components/common/TopBar";
 import NavBar from "../components/common/Navbar";
 import Footer from "../components/common/Footer";
 import useFetchUserDetails from "../components/hook/useFetchUserDetails";
+import { useSelector } from "react-redux";
+import { IsAuthenticated } from "../redux/userSlice";
+import useTokenValidation from "../components/hook/useCheckAuthencation";
 
 interface LayoutProps {
   children: React.ReactNode;
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
-  const userDetails = useFetchUserDetails();
+  useTokenValidation();
+
+  const isLogged = useSelector(IsAuthenticated);
 
   return (
     <>
       <div className="sticky top-0 z-10">
         <TopBar />
-        <NavBar userDetails={userDetails} />
+        <NavBar isLogged={isLogged} />
       </div>
 
       <div className="m-5">{children}</div>
