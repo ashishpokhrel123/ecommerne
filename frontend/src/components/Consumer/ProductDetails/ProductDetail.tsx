@@ -3,6 +3,8 @@ import Iphone14 from "../../../assets/iPhone14.jpg";
 import { FaBox, FaStar } from "react-icons/fa";
 import { FaTruck } from "react-icons/fa";
 import Loader from "../../../common/loader/Loader";
+import ImageLoader from "../../../common/loader/ImageLoader";
+import TextLoader from "../../../common/loader/TextLoader";
 
 function ProductDetail({ productId }: { productId: string }) {
   const colorOptions = [
@@ -63,7 +65,7 @@ function ProductDetail({ productId }: { productId: string }) {
     <div className="px-4">
       <div className="h-[550px] flex justify-between items-center text-green-900">
         {loading ? (
-          <Loader />
+          <ImageLoader />
         ) : (
           <div className="w-1/2 relative bg-zinc-100 h-full flex flex-col items-center justify-center">
             <img
@@ -96,7 +98,7 @@ function ProductDetail({ productId }: { productId: string }) {
         <div className="w-1/2 h-full flex flex-col mx-6">
           {loading ? (
             <div>
-              <Loader />
+              <TextLoader />
             </div>
           ) : (
             <>
