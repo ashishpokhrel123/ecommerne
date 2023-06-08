@@ -186,27 +186,31 @@ function ProductDetail({ productId }: { productId: string }) {
               </div>
             </>
           )}
-          <div className="border-2 border-gray-200 mt-5 p-4">
-            <div className="flex items-center gap-4">
-              <FaTruck size={20} color="orange" />
-              <span className="text-sm text-black font-bold">
-                Free Delivery
-              </span>
+          {loading ? (
+            <TextLoader />
+          ) : (
+            <div className="border-2 border-gray-200 mt-5 p-4">
+              <div className="flex items-center gap-4">
+                <FaTruck size={20} color="orange" />
+                <span className="text-sm text-black font-bold">
+                  Free Delivery
+                </span>
+              </div>
+              <p className="text-stone-700 text-sm mt-2 underline ml-8">
+                Enter Your Postal Code for Delivery
+              </p>
+              <div className="flex items-center gap-4 mt-4">
+                <FaBox size={20} color="orange" />
+                <span className="text-sm text-black font-bold">
+                  Return Delivery
+                </span>
+              </div>
+              <p className="text-stone-700 text-sm mt-2 ml-8">
+                Free 7 days Delivery.
+                <span className="underline">Details</span>
+              </p>
             </div>
-            <p className="text-stone-700 text-sm mt-2 underline ml-8">
-              Enter Your Postal Code for Delivery
-            </p>
-            <div className="flex items-center gap-4 mt-4">
-              <FaBox size={20} color="orange" />
-              <span className="text-sm text-black font-bold">
-                Return Delivery
-              </span>
-            </div>
-            <p className="text-stone-700 text-sm mt-2 ml-8">
-              Free 7 days Delivery.
-              <span className="underline">Details</span>
-            </p>
-          </div>
+          )}
         </div>
       </div>
     </div>

@@ -9,13 +9,9 @@ function PopularCategory() {
         <hr className="w-full mt-6 border-t border-gray-600" />
         <div className="grid grid-cols-2 gap-2 mt-4">
           {/* Category 1 */}
-          <div className="flex items-center bg-gray-100 p-2 rounded">
-            <div className="w-12 h-12 bg-gray-200 rounded-full mr-2">
-              <img
-                src={Iphone14}
-                alt="Category 1"
-                className="w-10 h-10 rounded-full"
-              />
+          <div className="flex items-center bg-gray-200  p-2">
+            <div className="w-12 h-12 bg-gray-200  mr-2">
+              <img src={Iphone14} alt="Category 1" className="w-10 h-10" />
             </div>
             <div>
               <span className="font-semibold text-gray-800 text-sm">
@@ -27,15 +23,9 @@ function PopularCategory() {
               </span>
             </div>
           </div>
-
-          {/* Category 2 */}
-          <div className="flex items-center bg-gray-100 p-2 rounded">
-            <div className="w-12 h-12 bg-gray-200 rounded-full mr-2">
-              <img
-                src={Iphone14}
-                alt="Category 2"
-                className="w-10 h-10 rounded-full"
-              />
+          <div className="flex items-center bg-gray-200  p-2">
+            <div className="w-12 h-12 bg-gray-200  mr-2">
+              <img src={Iphone14} alt="Category 1" className="w-10 h-10" />
             </div>
             <div>
               <span className="font-semibold text-gray-800 text-sm">
@@ -47,15 +37,9 @@ function PopularCategory() {
               </span>
             </div>
           </div>
-
-          {/* Category 3 */}
-          <div className="flex items-center bg-gray-100 p-2 rounded">
-            <div className="w-12 h-12 bg-gray-200 rounded-full mr-2">
-              <img
-                src={Iphone14}
-                alt="Category 3"
-                className="w-10 h-10 rounded-full"
-              />
+          <div className="flex items-center bg-gray-200  p-2">
+            <div className="w-12 h-12 bg-gray-200  mr-2">
+              <img src={Iphone14} alt="Category 1" className="w-10 h-10" />
             </div>
             <div>
               <span className="font-semibold text-gray-800 text-sm">
@@ -67,15 +51,9 @@ function PopularCategory() {
               </span>
             </div>
           </div>
-
-          {/* Category 4 */}
-          <div className="flex items-center bg-gray-100 p-2 rounded">
-            <div className="w-12 h-12 bg-gray-200 rounded-full mr-2">
-              <img
-                src={Iphone14}
-                alt="Category 4"
-                className="w-10 h-10 rounded-full"
-              />
+          <div className="flex items-center bg-gray-200  p-2">
+            <div className="w-12 h-12 bg-gray-200  mr-2">
+              <img src={Iphone14} alt="Category 1" className="w-10 h-10" />
             </div>
             <div>
               <span className="font-semibold text-gray-800 text-sm">
@@ -87,14 +65,9 @@ function PopularCategory() {
               </span>
             </div>
           </div>
-
-          <div className="flex items-center bg-gray-100 p-2 rounded">
-            <div className="w-12 h-12 bg-gray-200 rounded-full mr-2">
-              <img
-                src={Iphone14}
-                alt="Category 4"
-                className="w-10 h-10 rounded-full"
-              />
+          <div className="flex items-center bg-gray-200  p-2">
+            <div className="w-12 h-12 bg-gray-200  mr-2">
+              <img src={Iphone14} alt="Category 1" className="w-10 h-10" />
             </div>
             <div>
               <span className="font-semibold text-gray-800 text-sm">
@@ -106,14 +79,9 @@ function PopularCategory() {
               </span>
             </div>
           </div>
-
-          <div className="flex items-center bg-gray-100 p-2 rounded">
-            <div className="w-12 h-12 bg-gray-200 rounded-full mr-2">
-              <img
-                src={Iphone14}
-                alt="Category 4"
-                className="w-10 h-10 rounded-full"
-              />
+          <div className="flex items-center bg-gray-200  p-2">
+            <div className="w-12 h-12 bg-gray-200  mr-2">
+              <img src={Iphone14} alt="Category 1" className="w-10 h-10" />
             </div>
             <div>
               <span className="font-semibold text-gray-800 text-sm">
