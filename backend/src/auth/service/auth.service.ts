@@ -1,20 +1,26 @@
-import { JwtService } from '@nestjs/jwt';
-import { UserRepository } from 'src/user/respository/userRepository';
-import * as bcrypt from 'bcrypt';
-import { isEmail } from 'class-validator';
-import { HttpException, HttpStatus, Injectable, Res, UnauthorizedException } from '@nestjs/common';
-import { CreateUserDto } from 'src/user/dto/create-user.dto';
-import { User, UserModel } from 'src/user/schema/user.schema';
-import { JwtPayload } from 'src/interface/jwt-payload.interface';
+import { JwtService } from "@nestjs/jwt";
+import { UserRepository } from "src/user/respository/userRepository";
+import * as bcrypt from "bcrypt";
+import { isEmail } from "class-validator";
+import {
+  HttpException,
+  HttpStatus,
+  Injectable,
+  Res,
+  UnauthorizedException,
+} from "@nestjs/common";
+import { CreateUserDto } from "src/user/dto/create-user.dto";
+import { User, UserModel } from "src/user/schema/user.schema";
+import { JwtPayload } from "src/interface/jwt-payload.interface";
 
 @Injectable()
 export class AuthService {
   constructor(
     private readonly userRepository: UserRepository,
-    private readonly jwtService: JwtService,
+    private readonly jwtService: JwtService
   ) {}
 
-async validateUser(email: string, password: string): Promise<any> {
+  async validateUser(email: string, password: string): Promise<any> {
     const user = await this.userRepository.findUserByEmail(email);
     if (user && user.password === password) {
       const { password, ...result } = user;
@@ -30,11 +36,11 @@ async validateUser(email: string, password: string): Promise<any> {
     const [access_token, refresh_token] = await Promise.all([
       this.jwtService.signAsync(payload, {
         secret: process.env.JWT_SECRET,
-        expiresIn: '7d',
+        expiresIn: "7d",
       }),
       this.jwtService.signAsync(payload, {
         secret: process.env.JWT_REFRESH,
-        expiresIn: '7d',
+        expiresIn: "7d",
       }),
     ]);
     return { access_token, refresh_token };
@@ -43,51 +49,51 @@ async validateUser(email: string, password: string): Promise<any> {
   async login(
     email: string,
     password: string,
-    @Res({ passthrough: true }) response: any,
+    @Res({ passthrough: true }) response: any
   ): Promise<{ status: number; message: string; access_token: string }> {
     if (!isEmail(email)) {
-      throw new HttpException('Email is not valid', HttpStatus.NOT_ACCEPTABLE);
+      throw new HttpException("Email is not valid", HttpStatus.NOT_ACCEPTABLE);
     }
     if (password.length < 1) {
       throw new HttpException(
-        'Password is required',
-        HttpStatus.NOT_ACCEPTABLE,
+        "Password is required",
+        HttpStatus.NOT_ACCEPTABLE
       );
     }
     const user = await this.userRepository.findUserByEmail(email);
     if (!user) {
-      throw new HttpException('Invalid email', HttpStatus.FORBIDDEN);
+      throw new HttpException("Invalid email", HttpStatus.FORBIDDEN);
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       throw new HttpException(
-        'Invalid email or password',
-        HttpStatus.FORBIDDEN,
+        "Invalid email or password",
+        HttpStatus.FORBIDDEN
       );
     }
 
     const payload = { email: user.email, id: user.id };
     const { access_token, refresh_token } = await this.getToken(payload);
-    response.cookie('token', 'Bearer ' + refresh_token, {
+    response.cookie("token", "Bearer " + refresh_token, {
       httpOnly: true,
       secure: true,
     });
     return {
       status: HttpStatus.CREATED,
-      message: 'Login successful',
+      message: "Login successful",
       access_token,
     };
   }
 
   async register(
-    body: CreateUserDto,
+    body: CreateUserDto
   ): Promise<{ status: number; message: string; data: User }> {
     const doesEmailAlreadyExist = await this.userRepository.findUserByEmail(
-      body.email,
+      body.email
     );
     if (doesEmailAlreadyExist) {
-      throw new HttpException('Email already exists', HttpStatus.CONFLICT);
+      throw new HttpException("Email already exists", HttpStatus.CONFLICT);
     }
 
     const user = await this.registerUserFromInput(body);
@@ -95,13 +101,13 @@ async validateUser(email: string, password: string): Promise<any> {
     if (savedUser) {
       return {
         status: HttpStatus.CREATED,
-        message: 'User created successfully',
+        message: "User created successfully",
         data: savedUser,
       };
     } else {
       return {
         status: HttpStatus.EXPECTATION_FAILED,
-        message: 'Internal Server Error',
+        message: "Internal Server Error",
         data: null,
       };
     }
@@ -110,7 +116,7 @@ async validateUser(email: string, password: string): Promise<any> {
   async registerUserFromInput(body: CreateUserDto): Promise<User> {
     const { name, email, password, photo, gender, phone } = body;
     if (!(await this.isPasswordStrong(password))) {
-      throw new HttpException('Password is weak', HttpStatus.BAD_REQUEST);
+      throw new HttpException("Password is weak", HttpStatus.BAD_REQUEST);
     }
     const user = new UserModel({
       name,
@@ -118,7 +124,7 @@ async validateUser(email: string, password: string): Promise<any> {
       password: await this.passwordHashFunction(password),
       photo,
       gender,
-      phone
+      phone,
     });
     return user;
   }
@@ -140,8 +146,21 @@ async validateUser(email: string, password: string): Promise<any> {
     return this.userRepository.findUserByEmail(email);
   }
 
-  async refreshAccessToken(refreshToken:string):Promise<string> {
+  async refreshAccessToken(refreshToken: string): Promise<string> {
     return;
+  }
 
+  async logout(
+    @Res({ passthrough: true }) response: any
+  ): Promise<{ status: number; message: string }> {
+    response.cookie("token", null),
+      {
+        httpOnly: true,
+        secure: true,
+      };
+    return {
+      status: HttpStatus.OK,
+      message: "Logout successful",
+    };
   }
 }

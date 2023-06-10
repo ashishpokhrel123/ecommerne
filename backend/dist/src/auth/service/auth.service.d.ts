@@ -1,7 +1,7 @@
-import { JwtService } from '@nestjs/jwt';
-import { UserRepository } from 'src/user/respository/userRepository';
-import { CreateUserDto } from 'src/user/dto/create-user.dto';
-import { User } from 'src/user/schema/user.schema';
+import { JwtService } from "@nestjs/jwt";
+import { UserRepository } from "src/user/respository/userRepository";
+import { CreateUserDto } from "src/user/dto/create-user.dto";
+import { User } from "src/user/schema/user.schema";
 export declare class AuthService {
     private readonly userRepository;
     private readonly jwtService;
@@ -29,4 +29,8 @@ export declare class AuthService {
     private passwordHashFunction;
     getEmail(email: string): Promise<User | null>;
     refreshAccessToken(refreshToken: string): Promise<string>;
+    logout(response: any): Promise<{
+        status: number;
+        message: string;
+    }>;
 }

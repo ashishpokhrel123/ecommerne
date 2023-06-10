@@ -1,7 +1,7 @@
-import { HttpStatus } from '@nestjs/common';
-import { AuthService } from '../service/auth.service';
-import { CreateUserDto } from 'src/user/dto/create-user.dto';
-import { User } from 'src/user/schema/user.schema';
+import { HttpStatus } from "@nestjs/common";
+import { AuthService } from "../service/auth.service";
+import { CreateUserDto } from "src/user/dto/create-user.dto";
+import { User } from "src/user/schema/user.schema";
 export declare class AuthController {
     private readonly authService;
     constructor(authService: AuthService);
@@ -23,5 +23,9 @@ export declare class AuthController {
         status: number;
         message: string;
         data: User;
+    }>;
+    logout(response: Response): Promise<{
+        status: number;
+        message: string;
     }>;
 }
