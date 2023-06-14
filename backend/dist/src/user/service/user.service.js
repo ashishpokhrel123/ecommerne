@@ -22,16 +22,17 @@ let UserService = class UserService {
     }
     async getProfile(userId) {
         const user = await this.userRepository.findUserById(userId);
-        const { name, email, photo, gender, phone } = user;
+        const { name, email, photo, gender, phone, role } = user;
         return {
             status: common_1.HttpStatus.OK,
-            message: 'Profile fetech succesfully',
+            message: "Profile fetech succesfully",
             data: {
                 name: name ? name : null,
                 email: email ? email : null,
                 photo: photo ? photo : null,
                 gender: gender ? gender : null,
-                phone: phone ? phone : null
+                phone: phone ? phone : null,
+                role: role ? role : null,
             },
         };
     }

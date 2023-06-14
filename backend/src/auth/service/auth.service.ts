@@ -50,7 +50,7 @@ export class AuthService {
     email: string,
     password: string,
     @Res({ passthrough: true }) response: any
-  ): Promise<{ status: number; message: string; access_token: string }> {
+  ): Promise<{ status: number; message: string; access_token: string}> {
     if (!isEmail(email)) {
       throw new HttpException("Email is not valid", HttpStatus.NOT_ACCEPTABLE);
     }
@@ -114,7 +114,7 @@ export class AuthService {
   }
 
   async registerUserFromInput(body: CreateUserDto): Promise<User> {
-    const { name, email, password, photo, gender, phone } = body;
+    const { name, email, password, photo, gender, phone, role } = body;
     if (!(await this.isPasswordStrong(password))) {
       throw new HttpException("Password is weak", HttpStatus.BAD_REQUEST);
     }
@@ -125,6 +125,7 @@ export class AuthService {
       photo,
       gender,
       phone,
+      role
     });
     return user;
   }

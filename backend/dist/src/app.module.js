@@ -16,6 +16,9 @@ const config_1 = require("@nestjs/config");
 const mongoose_1 = require("@nestjs/mongoose");
 const database_config_service_1 = require("../lib/config/database-config.service");
 ;
+const core_1 = require("@nestjs/core");
+const RolesGuard_1 = require("./guard/RolesGuard");
+const category_module_1 = require("./category/module/category.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -25,9 +28,13 @@ AppModule = __decorate([
             mongoose_1.MongooseModule.forRoot(database_config_service_1.databaseConfigService.getMongoUri()),
             user_module_1.UserModule,
             auth_module_1.AuthModule,
+            category_module_1.CategoryModule
         ],
         controllers: [app_controller_1.AppController],
-        providers: [app_service_1.AppService],
+        providers: [app_service_1.AppService, {
+                provide: core_1.APP_GUARD,
+                useClass: RolesGuard_1.RolesGuard,
+            },],
     })
 ], AppModule);
 exports.AppModule = AppModule;

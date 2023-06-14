@@ -7,7 +7,9 @@ import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { databaseConfigService } from 'lib/config/database-config.service';;
-import { UserRepository } from './user/respository/userRepository';
+import { APP_GUARD } from '@nestjs/core';
+import { RolesGuard } from './guard/RolesGuard';
+import { CategoryModule } from './category/module/category.module';
 
 
 @Module({
@@ -16,12 +18,16 @@ import { UserRepository } from './user/respository/userRepository';
     MongooseModule.forRoot(databaseConfigService.getMongoUri()),
     UserModule,
     AuthModule,
+    CategoryModule
    
    
     
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, {
+      provide: APP_GUARD,
+      useClass: RolesGuard,
+    },],
  
 })
 export class AppModule {}

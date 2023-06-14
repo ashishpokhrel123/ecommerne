@@ -13,6 +13,7 @@ export declare class UserController {
             photo: string;
             gender: string;
             phone: string;
+            role: string;
         };
     }>;
 }

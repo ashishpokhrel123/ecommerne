@@ -1,6 +1,6 @@
-import { CreateUserDto } from '../dto/create-user.dto';
-import { UserRepository } from '../respository/userRepository';
-import { User } from '../schema/user.schema';
+import { CreateUserDto } from "../dto/create-user.dto";
+import { UserRepository } from "../respository/userRepository";
+import { User } from "../schema/user.schema";
 export declare class UserService {
     private readonly userRepository;
     constructor(userRepository: UserRepository);
@@ -14,6 +14,7 @@ export declare class UserService {
             photo: string;
             gender: string;
             phone: string;
+            role: string;
         };
     }>;
 }

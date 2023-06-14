@@ -12,12 +12,12 @@ const user_service_1 = require("../service/user.service");
 const user_controller_1 = require("../controller/user.controller");
 const userRepository_1 = require("../respository/userRepository");
 const mongoose_1 = require("@nestjs/mongoose");
-const user_schema_1 = require("../schema/user.schema");
 const passport_1 = require("@nestjs/passport");
 const jwt_1 = require("@nestjs/jwt");
 const jwt_strategy_1 = require("../../auth/strategy/jwt.strategy");
 const JwtAuthGuard_1 = require("../../guard/JwtAuthGuard");
 const auth_service_1 = require("../../auth/service/auth.service");
+const user_schema_1 = require("../schema/user.schema");
 let UserModule = class UserModule {
 };
 UserModule = __decorate([

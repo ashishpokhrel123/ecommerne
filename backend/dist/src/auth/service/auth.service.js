@@ -106,10 +106,7 @@ let AuthService = class AuthService {
         }
     }
     async registerUserFromInput(body) {
-        const { name, email, password, photo, gender, phone } = body;
-        if (!(await this.isPasswordStrong(password))) {
-            throw new common_1.HttpException("Password is weak", common_1.HttpStatus.BAD_REQUEST);
-        }
+        const { name, email, password, photo, gender, phone, role } = body;
         const user = new user_schema_1.UserModel({
             name,
             email,
@@ -117,6 +114,7 @@ let AuthService = class AuthService {
             photo,
             gender,
             phone,
+            role
         });
         return user;
     }
@@ -143,8 +141,8 @@ let AuthService = class AuthService {
                 secure: true,
             };
         return {
-            status: common_1.HttpStatus.CREATED,
-            message: "Login successful",
+            status: common_1.HttpStatus.OK,
+            message: "Logout successful",
         };
     }
 };

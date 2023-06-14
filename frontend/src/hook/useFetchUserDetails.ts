@@ -4,8 +4,8 @@ import {
   selectedUserDetails,
   updateAccessToken,
   updateUserDetails,
-} from "../../redux/userSlice";
-import { getProfile } from "../../api/auth/auth";
+} from "../redux/userSlice";
+import { getProfile } from "../api/auth/auth";
 import { useCookies } from "react-cookie";
 
 const useFetchUserDetails = () => {

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { updateAccessToken } from "../../redux/userSlice";
+import { updateAccessToken } from "../redux/userSlice";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 const useTokenValidation = () => {

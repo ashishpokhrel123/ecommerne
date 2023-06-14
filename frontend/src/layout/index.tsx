@@ -2,10 +2,9 @@ import React, { useEffect } from "react";
 import TopBar from "../components/common/TopBar";
 import NavBar from "../components/common/Navbar";
 import Footer from "../components/common/Footer";
-import useFetchUserDetails from "../components/hook/useFetchUserDetails";
 import { useSelector } from "react-redux";
 import { IsAuthenticated } from "../redux/userSlice";
-import useTokenValidation from "../components/hook/useCheckAuthencation";
+import useTokenValidation from "../hook/useCheckAuthencation";
 
 interface LayoutProps {
   children: React.ReactNode;

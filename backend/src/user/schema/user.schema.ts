@@ -1,4 +1,11 @@
-import { Schema, Document, model } from 'mongoose';
+import { Schema, Document, model } from "mongoose";
+
+export enum UserRole {
+  CUSTOMER = "customer",
+  ADMIN = "admin",
+  SUPER_ADMIN = "superadmin",
+  DELIVERY_PERSON = "deliveryPerson",
+}
 
 interface User extends Document {
   name: string;
@@ -6,7 +13,8 @@ interface User extends Document {
   password: string;
   photo?: string;
   gender: string;
-  phone:string;
+  phone: string;
+  role: UserRole.CUSTOMER;
 }
 
 const userSchema = new Schema<User>({
@@ -16,8 +24,13 @@ const userSchema = new Schema<User>({
   photo: { type: String },
   gender: { type: String, required: true },
   phone: { type: String, required: true },
+  role: {
+    type: String,
+    enum: Object.values(UserRole),
+    default: UserRole.CUSTOMER,
+  },
 });
 
-const UserModel = model<User>('User', userSchema);
+const UserModel = model<User>("User", userSchema);
 
 export { User, UserModel, userSchema };

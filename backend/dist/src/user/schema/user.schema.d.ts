@@ -22,7 +22,13 @@
 /// <reference types="mongoose/types/validation" />
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
-import { Schema, Document } from 'mongoose';
+import { Schema, Document } from "mongoose";
+export declare enum UserRole {
+    CUSTOMER = "customer",
+    ADMIN = "admin",
+    SUPER_ADMIN = "superadmin",
+    DELIVERY_PERSON = "deliveryPerson"
+}
 interface User extends Document {
     name: string;
     email: string;
@@ -30,6 +36,7 @@ interface User extends Document {
     photo?: string;
     gender: string;
     phone: string;
+    role: UserRole.CUSTOMER;
 }
 declare const userSchema: Schema<User, import("mongoose").Model<User, any, any, any, Document<unknown, any, User> & Omit<User & {
     _id: import("mongoose").Types.ObjectId;
